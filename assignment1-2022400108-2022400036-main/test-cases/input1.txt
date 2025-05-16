@@ -1,0 +1,20 @@
+Geralt loots 5 Rebis
+Geralt loots 4 Vitriol, 1 Quebrith
+Geralt learns Black Blood potion consists of 3 Vitriol, 2 Rebis, 1 Quebrith
+Geralt brews Black Blood
+Geralt learns Igni sign is effective against Harpy
+Geralt encounters a Harpy
+Total ingredient?
+Total potion Black Blood?
+Total trophy Harpy?
+Geralt trades 1 Harpy trophy for 8 Vitriol, 3 Rebis
+Total ingredient?
+What is in Black Blood?
+What is effective against Harpy?
+Geralt brews Swallow
+Geralt trades 1 Wyvern trophy for 8 Vitriol, 3 Rebis
+Geralt learns Swallow potion consists of 10 Vitriol, 4 Rebis
+Geralt brews Swallow
+Geralt loots 2 Vitriol, 2 Rebis
+Geralt brews Swallow
+Total potion Swallow?
