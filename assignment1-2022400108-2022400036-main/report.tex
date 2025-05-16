@@ -1,0 +1,173 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{hyperref}
+
+\lstdefinestyle{CStyle}{
+    language=C,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny,
+    stepnumber=1,
+    breaklines=true,
+    frame=single
+}
+
+\title{Project Report  \\ \large Systems Programming – Spring 2025}
+\author{Akif Yıldırım, 2022400108 \\ Oğuz Semih Arık, 2022400036 
+%\\ Department of Computer Engineering \\ University Name
+}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+The Witcher Tracker project simulates a text-based assistant for Geralt of Rivia. The system manages ingredients, potions, trophies, and monster knowledge using linked list structures. The main objective is to provide a dynamic, modular command-based program capable of parsing inputs and updating the internal state accordingly.
+
+\section{Problem Description}
+Geralt can perform several actions:
+\begin{itemize}
+    \item Loot ingredients.
+    \item Learn new potion formulas or monster weaknesses.
+    \item Brew potions using ingredients.
+    \item Trade trophies for ingredients.
+    \item Defeat monsters if prepared.
+    \item Query total ingredients, potions, or trophies.
+\end{itemize}
+
+Constraints:
+\begin{itemize}
+    
+    \item All lists must be implemented using custom linked lists.
+\end{itemize}
+
+\section{Methodology}
+The solution is based on string parsing techniques in C using \texttt{strtok}, \texttt{sscanf}, and \texttt{strstr}. The project uses multiple handler functions for different commands. Dynamic memory management is handled via \texttt{malloc} and \texttt{free}.
+
+
+
+
+
+\section{Implementation}
+
+\subsection{Code Structure}
+\begin{itemize}
+    \item \texttt{main.c} — Contains all data structures, input parsing, and command handlers.
+    \item \texttt{Makefile} — Compiles the program.
+    
+\end{itemize}
+
+\subsection{Key Functions}
+\begin{itemize}
+    \item \texttt{handleLoot()} — Adds looted ingredients.
+    \item \texttt{handleLearn()} — Learns formulas or monster knowledge.
+    \item \texttt{handleTrade()} — Trades trophies for ingredients.
+    \item \texttt{handleBrew()} — Brews potions using ingredients.
+    \item \texttt{handleQuestions()} — Handles all queries.
+\end{itemize}
+
+\subsection{Sample Code}
+\begin{lstlisting}[style=CStyle]
+void add(Item** head, const char* name, int quantity) {
+    Item* item = find(*head, name);
+    if (item) item->quantity += quantity;
+    else {
+        Item* newItem = malloc(sizeof(Item));
+        strcpy(newItem->name, name);
+        newItem->quantity = quantity;
+        newItem->next = *head;
+        *head = newItem;
+    }
+    
+}
+
+\end{lstlisting}
+
+\subsection{Challenges and Solutions}
+
+During the implementation of the Witcher Tracker project, we encountered several challenges. Below is a summary of the main difficulties and how we solved them.
+
+\begin{itemize}
+    \item \textbf{Dynamic Linked List Management:}  
+    I had difficulties at first managing linked lists dynamically, especially with adding, searching, and removing nodes properly. 
+    \newline
+    \textbf{Solution:} With the help of ChatGPT, I learned how to properly use linked lists in C. I understood the logic of pointers and implemented generic functions like \texttt{find()}, \texttt{add()}, and \texttt{removeItem()} for safe data management.
+
+    \item \textbf{String Parsing and Input Handling:}  
+    It was challenging to parse complex input commands like \texttt{Geralt trades 1 Harpy trophy for 8 Vitriol, 3 Rebis} correctly.
+    \newline
+    \textbf{Solution:} I used a combination of \texttt{strstr}, \texttt{strtok}, and \texttt{sscanf} functions to split the string dynamically and extract necessary values without hardcoding.
+
+    \item \textbf{Different Sorting Requirements:}  
+    Only ``What is in'' query required sorting items from most to least quantity, but other outputs had to be alphabetical.
+    \newline
+    \textbf{Solution:} I created a separate function \texttt{printSortedByQuantity()} and used it only in relevant parts to meet the project requirements.
+
+    
+\end{itemize}
+
+
+
+\section{Results}
+
+Sample Input:
+
+\begin{verbatim}
+Geralt loots 5 Rebis, 4 Vitriol
+Geralt learns Black Blood potion consists of 3 Vitriol, 2 Rebis, 1 Quebrith
+Geralt brews Black Blood
+Total ingredient?
+\end{verbatim}
+
+Sample Output:
+
+\begin{verbatim}
+Alchemy ingredients obtained
+New alchemy formula obtained: Black Blood
+Alchemy item created: Black Blood
+3 Rebis, 1 Vitriol
+\end{verbatim}
+
+\section{Discussion}
+\textbf{Strengths:}
+\begin{itemize}
+    \item Clean modular code.
+    \item Fully dynamic memory usage.
+    \item Correct parsing of all commands.
+\end{itemize}
+
+\textbf{Limitations:}
+\begin{itemize}
+    
+    \item Some commands require precise spacing to be parsed correctly.
+\end{itemize}
+
+
+
+\section{Conclusion}
+The Witcher Tracker project successfully simulates a text-based inventory and combat assistant for Geralt. It demonstrates C programming skills such as dynamic memory allocation, string parsing, and modular code structure.
+
+\section{References}
+\begin{itemize}
+\item Ritchie, Dennis M., and Kernighan, Brian W. "The C Programming Language."
+\item UNIX Programming Concepts — Lecture Notes.
+\end{itemize}
+
+\section*{AI Assistants}
+During the development of this project, AI tools (ChatGPT) were used for:
+\begin{itemize}
+    \item Debugging syntax errors.
+    \item Getting suggestions for string parsing improvements.
+    \item Learning linkedlist fundamentals for C. 
+\end{itemize}
+
+All code is written and implemented by the students. AI usage was limited to understanding concepts and formatting.
+
+\end{document}
